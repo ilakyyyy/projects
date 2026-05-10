@@ -1,0 +1,16 @@
+SIMULATION REPORT - ID 1
+====================================
+
+Initial conditions:
+  Venus Phase:       -0.005 degrees
+  Ship Velocity:  25201.667 m/s
+  Bodies:            ['Sun', 'Earth', 'Venus', 'Ship']
+
+Time settings:
+  Total Steps:        15614
+Performance:
+  Factor:  0.6
+  Precision Factor: 1
+  Relative Energy Error: -1.06304e-14
+  Final Ship Velocity: 55081.0 m/s
+  Minimum Ship Distance: 3846916.0 m
