@@ -1,0 +1,6 @@
+Student NIP: 930278
+Questions asked: 3
+Distance: 24812.70
+Professors left: 7
+Simulation duration: 189
+Current stress: 100.00%

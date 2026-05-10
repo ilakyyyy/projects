@@ -1,0 +1,9 @@
+max_step 50
+velocity 150
+radius 2
+stress_searching_rate 0.8
+stress_chasing_rate 2
+r 0
+g 0
+b 255
+a 255

@@ -1,0 +1,7 @@
+max_step 20
+velocity 100
+radius 3
+r 255
+g 0
+b 0
+a 255
