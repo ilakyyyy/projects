@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+
+\begin{document}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{groupplot}[
+            group style={
+                group size=2 by 2,      % Cuadrícula de 2x2
+                horizontal sep=3.0cm,   % Separación horizontal entre gráficas
+                vertical sep=2cm        % Separación vertical entre gráficas
+            },
+            width=6cm,
+            height=6cm,
+            xmax = 0.55, xmin = 0.3, 
+            xtick distance=0.05,
+            xlabel={$\beta$},           % Eje X general
+            grid=both, minor tick num =9, minor grid style={lightgray!25},,
+            tick label style={font=\small},
+            label style={font=\small}
+        ]
+        
+        % Gráfica 1 (Columna índice 1 en función de beta)
+        \nextgroupplot[ylabel={Energía}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L016.txt};
+        
+        % Gráfica 2 (Columna índice 2 en función de beta)
+        \nextgroupplot[ylabel={Calor específico}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L016.txt};
+        
+        % Gráfica 3 (Columna índice 3 en función de beta)
+        \nextgroupplot[ylabel={Magnetización}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L016.txt};
+        
+        % Gráfica 4 (Columna índice 4 en función de beta)
+        \nextgroupplot[ylabel={Susceptibilidad}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L016.txt};
+        
+        \end{groupplot}
+    \end{tikzpicture}
+    \caption{Resultados obtenidos del archivo \texttt{simulations\_L016.txt}}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{groupplot}[
+            group style={
+                group size=2 by 2,      % Cuadrícula de 2x2
+                horizontal sep=3.0cm,   % Separación horizontal entre gráficas
+                vertical sep=2cm        % Separación vertical entre gráficas
+            },
+            width=6cm,
+            height=6cm,
+            xmax = 0.55, xmin = 0.3, 
+            xtick distance=0.05,
+            xlabel={$\beta$},           % Eje X general
+            grid=both, minor tick num =9, minor grid style={lightgray!25},,
+            tick label style={font=\small},
+            label style={font=\small}
+        ]
+        
+        % Gráfica 1 (Columna índice 1 en función de beta)
+        \nextgroupplot[ylabel={Energía}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L032.txt};
+        
+        % Gráfica 2 (Columna índice 2 en función de beta)
+        \nextgroupplot[ylabel={Calor específico}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L032.txt};
+        
+        % Gráfica 3 (Columna índice 3 en función de beta)
+        \nextgroupplot[ylabel={Magnetización}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L032.txt};
+        
+        % Gráfica 4 (Columna índice 4 en función de beta)
+        \nextgroupplot[ylabel={Susceptibilidad}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L032.txt};
+        
+        \end{groupplot}
+    \end{tikzpicture}
+    \caption{Resultados obtenidos del archivo \texttt{simulations\_L032.txt}}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{groupplot}[
+            group style={
+                group size=2 by 2,      % Cuadrícula de 2x2
+                horizontal sep=3.0cm,   % Separación horizontal entre gráficas
+                vertical sep=2cm        % Separación vertical entre gráficas
+            },
+            width=6cm,
+            height=6cm,
+            xmax = 0.55, xmin = 0.3, 
+            xtick distance=0.05,
+            xlabel={$\beta$},           % Eje X general
+            grid=both, minor tick num =9, minor grid style={lightgray!25},,
+            tick label style={font=\small},
+            label style={font=\small}
+        ]
+        
+        % Gráfica 1 (Columna índice 1 en función de beta)
+        \nextgroupplot[ylabel={Energía}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L064.txt};
+        
+        % Gráfica 2 (Columna índice 2 en función de beta)
+        \nextgroupplot[ylabel={Calor específico}, ymax=0.65]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L064.txt};
+        
+        % Gráfica 3 (Columna índice 3 en función de beta)
+        \nextgroupplot[ylabel={Magnetización}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L064.txt};
+        
+        % Gráfica 4 (Columna índice 4 en función de beta)
+        \nextgroupplot[ylabel={Susceptibilidad}, ymax=80]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L064.txt};
+        
+        \end{groupplot}
+    \end{tikzpicture}
+    \caption{Resultados obtenidos del archivo \texttt{simulations\_L064.txt}}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{groupplot}[
+            group style={
+                group size=2 by 2,      % Cuadrícula de 2x2
+                horizontal sep=3.0cm,   % Separación horizontal entre gráficas
+                vertical sep=2cm        % Separación vertical entre gráficas
+            },
+            width=6cm,
+            height=6cm,
+            xmax = 0.55, xmin = 0.3, 
+            xtick distance=0.05,
+            xlabel={$\beta$},           % Eje X general
+            grid=both, minor tick num =9, minor grid style={lightgray!25},,
+            tick label style={font=\small},
+            label style={font=\small}
+        ]
+        
+        % Gráfica 1 (Columna índice 1 en función de beta)
+        \nextgroupplot[ylabel={Energía}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L128.txt};
+        
+        % Gráfica 2 (Columna índice 2 en función de beta)
+        \nextgroupplot[ylabel={Calor específico}, ymax=0.7]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L128.txt};
+        
+        % Gráfica 3 (Columna índice 3 en función de beta)
+        \nextgroupplot[ylabel={Magnetización}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L128.txt};
+        
+        % Gráfica 4 (Columna índice 4 en función de beta)
+        \nextgroupplot[ylabel={Susceptibilidad}, ymax=300]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L128.txt};
+        
+        \end{groupplot}
+    \end{tikzpicture}
+    \caption{Resultados obtenidos del archivo \texttt{simulations\_L128.txt}}
+\end{figure}
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{groupplot}[
+            group style={
+                group size=2 by 2,      % Cuadrícula de 2x2
+                horizontal sep=3.0cm,   % Separación horizontal entre gráficas
+                vertical sep=2cm        % Separación vertical entre gráficas
+            },
+            width=6cm,
+            height=6cm,
+            xmax = 0.55, xmin = 0.3, 
+            xtick distance=0.05,
+            xlabel={$\beta$},           % Eje X general
+            grid=both, minor tick num =9, minor grid style={lightgray!25},,
+            tick label style={font=\small},
+            label style={font=\small}
+        ]
+        
+        % Gráfica 1 (Columna índice 1 en función de beta)
+        \nextgroupplot[
+            ylabel={Energía},
+            legend to name=CommonLegend,
+            legend columns=-1
+        ]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L016.txt};
+        \addplot [color=blue, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L032.txt};
+        \addplot [color=green!80!black, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L064.txt};
+        \addplot [color=orange, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=1] {data/simulations_L128.txt};
+        \legend{\textcolor{red}{$L=16$},\quad\textcolor{blue}{$L=32$},\quad\textcolor{green!80!black}{$L=64$},\quad\textcolor{orange}{$L=128$}}
+        
+        % Gráfica 2 (Columna índice 2 en función de beta)
+        \nextgroupplot[ylabel={Calor específico},ymax=0.65]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L016.txt};
+        \addplot [color=blue, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L032.txt};
+        \addplot [color=green!80!black, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L064.txt};
+        \addplot [color=orange, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=2] {data/simulations_L128.txt};
+        
+        % Gráfica 3 (Columna índice 3 en función de beta)
+        \nextgroupplot[ylabel={Magnetización}]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L016.txt};
+        \addplot [color=blue, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L032.txt};
+        \addplot [color=green!80!black, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L064.txt};
+        \addplot [color=orange, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=3] {data/simulations_L128.txt};
+        
+        % Gráfica 4 (Columna índice 4 en función de beta)
+        \nextgroupplot[ylabel={Susceptibilidad}, ymax=200]
+        \addplot [color=red, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L016.txt};
+        \addplot [color=blue, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L032.txt};
+        \addplot [color=green!80!black, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L064.txt};
+        \addplot [color=orange, mark=*, mark size=0.1pt, only marks] table [x=beta, y index=4] {data/simulations_L128.txt};
+        
+        \end{groupplot}
+    \end{tikzpicture}
+    
+    \vspace{0.25cm}
+    \ref{CommonLegend}
+    \caption{Todas las betas anteriores}
+\end{figure}
+
+
+
+\end{document}

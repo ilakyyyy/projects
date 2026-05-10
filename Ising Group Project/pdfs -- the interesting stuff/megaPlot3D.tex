@@ -1,0 +1,132 @@
+\documentclass[varwidth=25cm]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        % title={3D Dispersion Plot},
+        xlabel={$L$},
+        ylabel={$\beta$},
+        zlabel={$C_{esp}$},
+        zmax=.8,
+        grid=both,
+        view={70}{15},
+        width=12cm,
+        height=10cm,
+        ymin=0.4,
+        ymax=0.5,
+        xmin = 16,
+        xmax=128,
+        xtick ={16,32,64,128}
+        % enlarge x limits=2
+    ]
+        \addplot3 [
+            only marks,
+            mark=*,
+            mark size=0.2pt,
+            scatter,
+            point meta=x,
+        ] table [x index=0, y index=1, z index=3] {data/combined_simulations_L16to128.txt};
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        % title={3D Dispersion Plot},
+        xlabel={$L$},
+        ylabel={$\beta$},
+        zlabel={$\chi$},
+        zmax=200, % Adjust this maximum value as needed
+        grid=both,
+        % view={45}{35},
+        view={285}{25},
+        width=12cm,
+        xmin = 16,
+        xmax=128,
+        xtick ={16,32,64,128},
+        height=10cm,
+        ymin=0.42,
+        ymax=0.46
+    ]
+        \addplot3 [
+            only marks,
+            mark=*,
+            mark size=0.2pt,
+            scatter,
+            point meta=x,
+        ] table [x index=0, y index=1, z index=5] {data/combined_simulations_L16to128.txt};
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        % title={3D Dispersion Plot},
+        xlabel={$L$},
+        ylabel={$\beta$},
+        zlabel={$m$},
+        zmax=1, % Adjust this maximum value as needed
+        grid=both,
+        % view={270}{80},
+        view={85}{15},
+        width=12cm,
+        xmin = 16,
+        xmax=128,
+        xtick ={16,32,64,128},
+        height=10cm,
+        ymin=0.4,
+        ymax=0.5
+    ]
+        \addplot3 [
+            only marks,
+            mark=*,
+            mark size=0.2pt,
+            scatter,
+            point meta=x,
+        ] table [x index=0, y index=1, z index=4] {data/combined_simulations_L16to128.txt};
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        % title={3D Dispersion Plot},
+        xlabel={$L$},
+        ylabel={$\beta$},
+        zlabel={$e$},
+        zmax=-0.5, % Adjust this maximum value as needed
+        zmin=-0.8,
+        grid=both,
+        % view={270}{80},
+        view={45}{35},
+        width=12cm,
+        xmin = 16,
+        xmax=128,
+        xtick ={16,32,64,128},
+        height=10cm,
+        ymin=0.42,
+        ymax=0.48
+    ]
+        \addplot3 [
+            only marks,
+            mark=*,
+            mark size=0.2pt,
+            scatter,
+            point meta=x,
+        ] table [x index=0, y index=1, z index=2] {data/combined_simulations_L16to128.txt};
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

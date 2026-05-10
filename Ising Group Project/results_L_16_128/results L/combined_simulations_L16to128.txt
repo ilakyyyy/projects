@@ -1,0 +1,1 @@
+L        beta       energy       spec-heat    abs-magnet   suscept
