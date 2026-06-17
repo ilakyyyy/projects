@@ -112,6 +112,8 @@ def generate_plots(sim_id, batch_folder):
         7.1492e7     # Jupiter
     ]
 
+    venus_radius = true_radii[2]
+
     # =========================================
     # 1. 3D Trajectories Plot
     # =========================================
@@ -252,13 +254,17 @@ def generate_plots(sim_id, batch_folder):
     plotter_flyby = pv.Plotter(window_size=[800, 800], off_screen=True)
     plotter_flyby.set_background('white')
     
-    # Set bounds to comfortably fit the ship during flyby
-    flyby_max_val = np.max(np.abs(flyby_history[:, 0, :])) * 1.2 
+    # Set the view to be the minimum distance plus a margin of 2 Venus radii for a tight zoom.
+    flyby_max_val = float(min_dist) + (venus_radius * 2)
+
     flyby_bounds_mesh = pv.Box(bounds=(-flyby_max_val, flyby_max_val, -flyby_max_val, flyby_max_val, -flyby_max_val, flyby_max_val))
     plotter_flyby.add_mesh(flyby_bounds_mesh, style='wireframe', color='lightgray', opacity=0.3)
     
     # Venus flyby is zoomed in, so we can use much closer-to-reality scales
-    flyby_radii = [max(r * 2, flyby_max_val * 0.002) for r in true_radii]
+    flyby_radii = [max(r * 2, flyby_max_val * 0.002) for r in true_radii] # Default sizes
+    flyby_radii[2] = venus_radius / 2.0 # Make Venus visually smaller to better see the trajectory
+    flyby_radii[0] = flyby_max_val * 0.005 # Make the ship a very small point
+
     plotter_flyby.add_axes()
     plotter_flyby.camera_position = 'iso'
     
@@ -288,8 +294,32 @@ def generate_plots(sim_id, batch_folder):
         
     plotter_flyby.close()
 
+    # =========================================
+    # 6. Venus-Centered Flyby Static PNG
+    # =========================================
+    static_flyby_plotter = pv.Plotter(window_size=[800, 800], off_screen=True)
+    static_flyby_plotter.set_background('white')
+    static_flyby_plotter.add_mesh(flyby_bounds_mesh, style='wireframe', color='lightgray', opacity=0.3)
+    static_flyby_plotter.add_axes()
+    static_flyby_plotter.camera_position = 'iso'
+
+    # Add Venus sphere at a visually smaller radius to match the video
+    static_flyby_plotter.add_mesh(pv.Sphere(radius=venus_radius / 2.0, center=[0,0,0], theta_resolution=40, phi_resolution=40), color=colors[2])
+
+    # Add the full ship trajectory line for the flyby
+    flyby_pts = flyby_history[:, 0, :]
+    if len(flyby_pts) > 1:
+        flyby_line = pv.PolyData(flyby_pts)
+        flyby_line.lines = np.hstack([[len(flyby_pts)], np.arange(len(flyby_pts))])
+        static_flyby_plotter.add_mesh(flyby_line, color='purple', line_width=2)
+
+    static_flyby_plotter.add_text(f"Sim {sim_id} Venus Flyby Trajectory", name="title_text", font_size=12, color='black')
+    static_flyby_plotter.screenshot(os.path.join(output_folder, f"venus_flyby_static_{sim_id}.png"))
+    static_flyby_plotter.close()
+
 if __name__ == "__main__":
     # 1. Compile, setup folders, and execute C engine
+    print("Compiling and running sims...")
     total_simulations_run, batch_folder = compile_and_run_c()
     
     # 2. Generate plots for every simulation run
@@ -307,5 +337,5 @@ if __name__ == "__main__":
     # Clean up the temp file
     if os.path.exists("batch_path.txt"):
         os.remove("batch_path.txt")
-        
+
     print("\n[SUCCESS] Entire pipeline completed.")

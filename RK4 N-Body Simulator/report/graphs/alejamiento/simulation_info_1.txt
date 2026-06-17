@@ -1,0 +1,21 @@
+SIMULATION REPORT - ID 1
+=======================================
+
+Initial conditions:
+  Launch Angle:      1.745000 degrees
+  Pitch Angle:       -2.105000 degrees
+  Ship Velocity:     24711.607752 m/s
+  Bodies:            ['Ship', 'Sun', 'Venus', 'Earth', 'Moon', 'Jupiter']
+
+Time settings:
+  Total Steps:       3715465
+
+Performance:
+  Factor:            0.050000
+  Precision Factor:  50.000000   Max dt: 50.000000
+    Min dt: 0.010000
+  Relative Energy Error: 1.81541e-13
+  Final Ship Velocity:   23802 m/s
+  Delta Ship Velocity:   -910 m/s
+  Delta Ship Energy:     1.70459e+11 J
+  Minimum Ship Distance: 9022959 m

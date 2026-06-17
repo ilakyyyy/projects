@@ -8,25 +8,47 @@ int main() {
     int skip = 100;
     int fps = 80;
     
-    double min_launch_angle = -15.0;//Yaw (phi)
-    double max_launch_angle = 15.0;
-    double min_pitch_angle = -5.0;//Pitch (theta)
-    double max_pitch_angle = 5.0;
+    // double min_yaw_angle = 1.74500;
+    // double max_yaw_angle = 1.74500;
+    // double min_pitch_angle = -2.10500;
+    // double max_pitch_angle = -2.10500;
+
+    double min_yaw_angle = -8.39500;
+    double max_yaw_angle = -8.39500;
+    double min_pitch_angle = -0.82000;
+    double max_pitch_angle = -0.82000;
     
-    double total_t = 1200.0;//days
-    double factor = 0.005;//lower values => more precision
-    double precision_factor = 80.0;//will divite dt by it when closer than 1e9km
-    double max_dt = 10;
-    double min_dt = 0.001;
-    int pitch_sims = 15;//every 12º
-    int yaw_sims = 30;//every 12º
+    double total_t = 2000.0;
+    double factor = 0.05;
+    double precision_factor = 50.0;
+    double max_dt = 50;
+    double min_dt = 0.01;
+    int pitch_sims = 1;
+    int yaw_sims = 1;
     int total_sims = yaw_sims*pitch_sims;
+
+    // int skip = 100;
+    // int fps = 80;
+    
+    // double min_yaw_angle = -180.0;//Yaw (phi)
+    // double max_yaw_angle = 180.0;
+    // double min_pitch_angle = -180.0;//Pitch (theta)
+    // double max_pitch_angle = 180.0;
+    
+    // double total_t = 1200.0;//days
+    // double factor = 0.005;//lower values => more precision
+    // double precision_factor = 80.0;//will divite dt by it when closer than 1e9km
+    // double max_dt = 10;
+    // double min_dt = 0.001;
+    // int pitch_sims = 15;//every 12º
+    // int yaw_sims = 30;//every 12º
+    // int total_sims = yaw_sims*pitch_sims;
 
 
 
     //malloc
     double* yaw_angles = malloc(yaw_sims*sizeof(double));
-    CalculateSweep(min_launch_angle, max_launch_angle, yaw_angles, yaw_sims);
+    CalculateSweep(min_yaw_angle, max_yaw_angle, yaw_angles, yaw_sims);
     
     double* pitch_angles = malloc(pitch_sims*sizeof(double));
     CalculateSweep(min_pitch_angle, max_pitch_angle, pitch_angles, pitch_sims);
@@ -58,11 +80,11 @@ int main() {
     }
     fclose(eph_file);
 
-    //Vis-Viva equation use -- ESA orbiter targeted an initial perihelion of 0.53AU
-    double r_earth = sqrt(ephem[2][0]*ephem[2][0] + ephem[2][1]*ephem[2][1] + ephem[2][2]*ephem[2][2]);
-    double target_perihelion = 0.53 * r_earth; 
-    double a_transfer = (r_earth + target_perihelion)/2.0;
-    double exact_vel = sqrt(G*SUN_MASS* (2.0/r_earth - 1.0/a_transfer));
+    //JPL Data
+    double ship_vx_jpl = ephem[5][3];
+    double ship_vy_jpl = ephem[5][4];
+    double ship_vz_jpl = ephem[5][5];
+    double exact_vel = sqrt(ship_vx_jpl*ship_vx_jpl + ship_vy_jpl*ship_vy_jpl + ship_vz_jpl*ship_vz_jpl);
     
     double* ship_velocities;
     ship_velocities = malloc(total_sims*sizeof(double));

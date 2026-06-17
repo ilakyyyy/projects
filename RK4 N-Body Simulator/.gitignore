@@ -7,7 +7,7 @@ batch_path.txt
 
 # Data and media files (just in case they are generated outside the output folder)
 *.bin
-*.png
+# *.png
 *.gif
 
 # (Optional) Python cache if you ever import modules
